@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:padkeeper/features/main_screen/widgets/reusable/sidebar.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Text(
-            'Main',
-          ),
+        child: Row(
+          children: const [
+            Sidebar(),
+            Expanded(
+              child: Center(
+                child: Text('Content'),
+              ),
+            ),
+          ],
         ),
       ),
     );
