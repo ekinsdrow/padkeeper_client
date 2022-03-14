@@ -30,7 +30,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(InitialRoute.name, path: '/'),
-        RouteConfig(MainRoute.name, path: '/main-page')
+        RouteConfig(MainRoute.name, path: '/main')
       ];
 }
 
@@ -45,7 +45,7 @@ class InitialRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
-  const MainRoute() : super(MainRoute.name, path: '/main-page');
+  const MainRoute() : super(MainRoute.name, path: '/main');
 
   static const String name = 'MainRoute';
 }

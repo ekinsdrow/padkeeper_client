@@ -3,6 +3,6 @@ import 'package:padkeeper/features/app/di/app_scope.dart';
 
 void main() {
   runApp(
-    const AppScope(),
+     AppScope(),
   );
 }

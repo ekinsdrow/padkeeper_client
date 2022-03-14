@@ -15,4 +15,6 @@ class Constants {
   );
 
   static const aniamionDuration = Duration(milliseconds: 300);
+
+  static const double maxSmallScreenSize = 600;
 }

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:padkeeper/features/app/app.dart';
 import 'package:padkeeper/features/app/bloc/initial/initial_bloc.dart';
+import 'package:padkeeper/features/app/router/router.dart';
 
 class AppScope extends StatelessWidget {
-  const AppScope({Key? key}) : super(key: key);
+  AppScope({Key? key}) : super(key: key);
+
+  final appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,9 @@ class AppScope extends StatelessWidget {
         ..add(
           const InitialEvent.fetch(),
         ),
-      child: App(),
+      child: App(
+        router: appRouter,
+      ),
     );
   }
 }

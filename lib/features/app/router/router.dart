@@ -14,7 +14,7 @@ part 'router.gr.dart';
       page: InitialPage,
     ),
     AutoRoute<dynamic>(
-      name: 'MainRoute',
+      path: '/main',
       page: MainPage,
     ),
   ],

@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/features/main_screen/widgets/reusable/sidebar.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  var sidebarOpen = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Row(
-          children: const [
-            Sidebar(),
-            Expanded(
-              child: Center(
-                child: Text('Content'),
-              ),
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        return Scaffold(
+          body: SafeArea(
+            child: Row(
+              children: [
+                AnimatedContainer(
+                  duration: Constants.aniamionDuration,
+                  child: Sidebar(
+                    constraints: constrains,
+                  ),
+                ),
+                const Expanded(
+                  child: Center(
+                    child: Text('Content'),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
