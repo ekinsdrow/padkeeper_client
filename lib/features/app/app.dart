@@ -4,15 +4,18 @@ import 'package:padkeeper/common/assets/themes/themes.dart';
 import 'package:padkeeper/features/app/router/router.dart';
 
 class App extends StatelessWidget {
-  App({Key? key}) : super(key: key);
+  const App({
+    required this.router,
+    Key? key,
+  }) : super(key: key);
 
-  final _appRouter = AppRouter();
+  final AppRouter router;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: router.defaultRouteParser(),
+      routerDelegate: router.delegate(),
       debugShowCheckedModeBanner: false,
       title: 'Padkeeper',
       theme: Themes.light,

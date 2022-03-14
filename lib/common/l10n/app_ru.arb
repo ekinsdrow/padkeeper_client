@@ -1,3 +1,6 @@
 {
-    "padkeeper":"Padkeeper"
+  "create_new": "Создать новую",
+  "padkeeper": "Padkeeper",
+  "search": "Поиск",
+  "settings": "Настройки"
 }

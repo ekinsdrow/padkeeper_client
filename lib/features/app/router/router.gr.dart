@@ -17,20 +17,35 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    SplashRoute.name: (routeData) {
+    InitialRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const SplashPage());
+          routeData: routeData, child: const InitialPage());
+    },
+    MainRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const MainPage());
     }
   };
 
   @override
-  List<RouteConfig> get routes => [RouteConfig(SplashRoute.name, path: '/')];
+  List<RouteConfig> get routes => [
+        RouteConfig(InitialRoute.name, path: '/'),
+        RouteConfig(MainRoute.name, path: '/main')
+      ];
 }
 
 /// generated route for
-/// [SplashPage]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+/// [InitialPage]
+class InitialRoute extends PageRouteInfo<void> {
+  const InitialRoute() : super(InitialRoute.name, path: '/');
 
-  static const String name = 'SplashRoute';
+  static const String name = 'InitialRoute';
+}
+
+/// generated route for
+/// [MainPage]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute() : super(MainRoute.name, path: '/main');
+
+  static const String name = 'MainRoute';
 }
