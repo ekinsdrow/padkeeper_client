@@ -15,18 +15,16 @@ class Sidebar extends StatefulWidget {
 }
 
 class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
-  var _isOpen = false;
   late AnimationController _openButtonAnimationController;
 
+  var _isOpen = false;
+
   double get _smallWidth => 100;
-
   double get _bigWidth {
-    double bigW = 300;
-
+    var bigW = 300.0;
     if (widget.constraints.maxWidth < Constants.maxSmallScreenSize) {
       bigW = MediaQuery.of(context).size.width;
     }
-
     return bigW;
   }
 

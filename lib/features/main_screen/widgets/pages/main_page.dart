@@ -2,15 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/features/main_screen/widgets/reusable/sidebar.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  var sidebarOpen = false;
 
   @override
   Widget build(BuildContext context) {
