@@ -30,7 +30,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
     return bigW;
   }
 
-  void _openSideBar() {
+  void _changeSideBar() {
     setState(() {
       if (_isOpen) {
         _openButtonAnimationController.reverse();
@@ -39,6 +39,22 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
       }
 
       _isOpen = !_isOpen;
+    });
+  }
+
+  void _closeSideBar() {
+    setState(() {
+      _openButtonAnimationController.reverse();
+
+      _isOpen = false;
+    });
+  }
+
+  void _openSideBar() {
+    setState(() {
+      _openButtonAnimationController.forward();
+
+      _isOpen = true;
     });
   }
 
@@ -59,74 +75,83 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Constants.aniamionDuration,
-      width: _isOpen
-          ? _bigWidth == 300
-              ? 312
-              : MediaQuery.of(context).size.width
-          : _smallWidth + 12,
-      child: Stack(
-        children: [
-          AnimatedContainer(
-            duration: Constants.aniamionDuration,
-            width: _isOpen ? _bigWidth : _smallWidth,
-            padding: const EdgeInsets.only(
-              top: Constants.bigPadding,
-              bottom: Constants.bigPadding,
-              right: 26,
-              left: 26,
-            ),
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _SidebarItem(
-                  text: "Ivan Kolchev",
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  iconData: Icons.person,
-                  isFull: _isOpen,
-                ),
-                const SizedBox(
-                  height: Constants.bigPadding,
-                ),
-                Expanded(
-                  child: _Pages(
-                    isOpened: _isOpen,
+    return GestureDetector(
+      onPanUpdate: (details) {
+        if (details.delta.dx > 8) {
+          _openSideBar();
+        } else if (details.delta.dx < -8) {
+          _closeSideBar();
+        }
+      },
+      child: AnimatedContainer(
+        duration: Constants.aniamionDuration,
+        width: _isOpen
+            ? _bigWidth == 300
+                ? 312
+                : MediaQuery.of(context).size.width
+            : _smallWidth + 12,
+        child: Stack(
+          children: [
+            AnimatedContainer(
+              duration: Constants.aniamionDuration,
+              width: _isOpen ? _bigWidth : _smallWidth,
+              padding: const EdgeInsets.only(
+                top: Constants.bigPadding,
+                bottom: Constants.bigPadding,
+                right: 26,
+                left: 26,
+              ),
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _SidebarItem(
+                    text: "Ivan Kolchev",
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    iconData: Icons.person,
+                    isFull: _isOpen,
                   ),
-                ),
-                const SizedBox(
-                  height: Constants.bigPadding,
-                ),
-                _Bottom(
-                  isOpen: _isOpen,
-                ),
-              ],
-            ),
-          ),
-          AnimatedPositioned(
-            duration: Constants.aniamionDuration,
-            left: _isOpen
-                ? (_bigWidth == 300
-                    ? 288
-                    : MediaQuery.of(context).size.width - 12)
-                : 88,
-            top: MediaQuery.of(context).size.height / 2 - 12,
-            child: RotationTransition(
-              turns: Tween(
-                begin: 0.0,
-                end: 0.5,
-              ).animate(_openButtonAnimationController),
-              child: _OpenButton(
-                tapCallback: _openSideBar,
+                  const SizedBox(
+                    height: Constants.bigPadding,
+                  ),
+                  Expanded(
+                    child: _Pages(
+                      isOpened: _isOpen,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: Constants.bigPadding,
+                  ),
+                  _Bottom(
+                    isOpen: _isOpen,
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            AnimatedPositioned(
+              duration: Constants.aniamionDuration,
+              left: _isOpen
+                  ? (_bigWidth == 300
+                      ? 288
+                      : MediaQuery.of(context).size.width - 12)
+                  : 88,
+              top: MediaQuery.of(context).size.height / 2 - 12,
+              child: RotationTransition(
+                turns: Tween(
+                  begin: 0.0,
+                  end: 0.5,
+                ).animate(_openButtonAnimationController),
+                child: _OpenButton(
+                  tapCallback: _changeSideBar,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
