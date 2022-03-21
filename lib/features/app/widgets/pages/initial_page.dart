@@ -16,7 +16,7 @@ class InitialPage extends StatelessWidget {
           //TODO: show error, when app initializate
         },
         success: () => context.router.replace(
-          const MainRoute(),
+          const AuthRouter(),
         ),
       ),
       child: Scaffold(
