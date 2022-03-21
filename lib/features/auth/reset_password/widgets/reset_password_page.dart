@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/common/assets/images/resources.dart';
 import 'package:padkeeper/features/app/router/router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
@@ -93,8 +94,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         height: 48,
                         child: TextField(
                           controller: usernameEmailController,
-                          decoration: const InputDecoration(
-                            hintText: "Email or Username",
+                          decoration: InputDecoration(
+                            hintText:
+                                AppLocalizations.of(context)!.email_or_username,
                           ),
                         ),
                       ),
@@ -110,7 +112,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                 autofocus: true,
                                 controller: codeController,
                                 decoration: InputDecoration(
-                                  hintText: "Code",
+                                  hintText: AppLocalizations.of(context)!.code,
                                   suffix: GestureDetector(
                                     onTap: _timer.isActive ? null : _sendCode,
                                     child: Container(
@@ -123,7 +125,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                         _timer.isActive
                                             // ignore: lines_longer_than_80_chars
                                             ? "00:${_timer.tick > 20 ? "0" : ""}${30 - _timer.tick}"
-                                            : "Repeat send",
+                                            : AppLocalizations.of(context)!
+                                                .repeat_code,
                                       ),
                                     ),
                                   ),
@@ -145,7 +148,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         child: ElevatedButton(
                           onPressed: _codeSending ? _resetPassword : _sendCode,
                           child: Text(
-                            _codeSending ? 'Reset Password' : 'Send code',
+                            _codeSending
+                                ? AppLocalizations.of(context)!.reset_password
+                                : AppLocalizations.of(context)!.send_code,
                           ),
                         ),
                       ),
@@ -165,7 +170,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             context.router.pop();
                           },
                           child: Text(
-                            'Log in',
+                            AppLocalizations.of(context)!.login,
                             style: TextStyle(
                               color: Theme.of(context)
                                   .textTheme

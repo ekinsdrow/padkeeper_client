@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/common/assets/images/resources.dart';
 import 'package:padkeeper/features/app/router/router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -61,8 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 48,
                         child: TextField(
                           controller: usernameEmailController,
-                          decoration: const InputDecoration(
-                            hintText: "Email or Username",
+                          decoration: InputDecoration(
+                            hintText:
+                                AppLocalizations.of(context)!.email_or_username,
                           ),
                         ),
                       ),
@@ -74,8 +76,8 @@ class _LoginPageState extends State<LoginPage> {
                         child: TextField(
                           controller: passwordController,
                           obscureText: true,
-                          decoration: const InputDecoration(
-                            hintText: "Password",
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(context)!.password,
                           ),
                         ),
                       ),
@@ -93,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 200,
                           height: 30,
                           child: Text(
-                            "Forgot password?",
+                            AppLocalizations.of(context)!.forgot_password,
                             textAlign: TextAlign.right,
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
@@ -118,7 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                               const MainRoute(),
                             );
                           },
-                          child: const Text('Log in'),
+                          child: Text(
+                            AppLocalizations.of(context)!.login,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -139,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           },
                           child: Text(
-                            'Register',
+                            AppLocalizations.of(context)!.register,
                             style: TextStyle(
                               color: Theme.of(context)
                                   .textTheme

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/common/assets/images/resources.dart';
 import 'package:padkeeper/features/app/router/router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -65,8 +66,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 48,
                         child: TextField(
                           controller: emailController,
-                          decoration: const InputDecoration(
-                            hintText: "Email",
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(context)!.email,
                           ),
                         ),
                       ),
@@ -77,8 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 48,
                         child: TextField(
                           controller: usernameController,
-                          decoration: const InputDecoration(
-                            hintText: "Username",
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(context)!.username,
                           ),
                         ),
                       ),
@@ -90,8 +91,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: TextField(
                           controller: passwordController,
                           obscureText: true,
-                          decoration: const InputDecoration(
-                            hintText: "Password",
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(context)!.password,
                           ),
                         ),
                       ),
@@ -103,8 +104,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: TextField(
                           controller: repeatPasswordController,
                           obscureText: true,
-                          decoration: const InputDecoration(
-                            hintText: "Repeat Password",
+                          decoration: InputDecoration(
+                            hintText:
+                                AppLocalizations.of(context)!.repeat_password,
                           ),
                         ),
                       ),
@@ -125,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               const MainRoute(),
                             );
                           },
-                          child: const Text('Register'),
+                          child: Text(AppLocalizations.of(context)!.register),
                         ),
                       ),
                       const SizedBox(
@@ -144,7 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             context.router.pop();
                           },
                           child: Text(
-                            'Log in',
+                            AppLocalizations.of(context)!.login,
                             style: TextStyle(
                               color: Theme.of(context)
                                   .textTheme
