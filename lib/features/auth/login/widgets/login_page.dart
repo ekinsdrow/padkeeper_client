@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/common/assets/images/resources.dart';
-import 'package:padkeeper/common/assets/themes/themes.dart';
 import 'package:padkeeper/features/app/router/router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,12 +12,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
+  final usernameEmailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   void dispose() {
-    emailController.dispose();
+    usernameEmailController.dispose();
     passwordController.dispose();
 
     super.dispose();
@@ -27,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Center(
           child: Container(
@@ -60,9 +60,9 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 48,
                         child: TextField(
-                          controller: emailController,
+                          controller: usernameEmailController,
                           decoration: const InputDecoration(
-                            hintText: "Email",
+                            hintText: "Email or Username",
                           ),
                         ),
                       ),

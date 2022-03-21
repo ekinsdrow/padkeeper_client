@@ -10,6 +10,13 @@ class Themes {
   static get primaryColor => const Color(0xFFFDCB58);
 
   static ThemeData get light => ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: bgColor,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: primaryColor,
+          ),
+        ),
         scaffoldBackgroundColor: bgColor,
         primaryColor: primaryColor,
         backgroundColor: bg2Color,
