@@ -50,5 +50,42 @@ class Themes {
             fontSize: 14,
           ),
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: primaryColor,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+              primaryColor,
+            ),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+              ),
+            ),
+            shadowColor: MaterialStateProperty.all(
+              const Color.fromARGB(60, 0, 0, 0),
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          contentPadding: const EdgeInsets.only(
+            left: 20,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide.none,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: BorderSide(
+              color: primaryColor,
+            ),
+          ),
+        ),
       );
 }

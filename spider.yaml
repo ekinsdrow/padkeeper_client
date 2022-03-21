@@ -3,7 +3,7 @@ no_comments: true
 export: true
 use_part_of: true
 
-package: assets/images
+package: common/assets/images
 
 groups:
   - path: assets/images/png
