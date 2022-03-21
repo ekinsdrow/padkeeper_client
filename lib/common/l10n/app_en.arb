@@ -1,6 +1,18 @@
 {
-  "create_new":"Create new",
+  "code": "Code",
+  "create_new": "Create new",
+  "email": "Email",
+  "email_or_username": "Email or Username",
+  "forgot_password": "Forgot password?",
+  "login": "Log in",
   "padkeeper": "Padkeeper",
+  "password": "Password",
+  "register": "Register",
+  "repeat_code": "Repeat code",
+  "repeat_password": "Password repeat",
+  "reset_password": "Reset password",
   "search": "Search",
-  "settings": "Settings"
+  "send_code": "Send Code",
+  "settings": "Settings",
+  "username": "Username"
 }
