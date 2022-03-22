@@ -41,15 +41,6 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const ResetPasswordPage());
     },
-    MainScreenPlaceholderRoute.name: (routeData) {
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: const MainScreenPlaceholderPage(),
-          fullscreenDialog: true,
-          transitionsBuilder: TransitionsBuilders.slideLeft,
-          opaque: true,
-          barrierDismissible: false);
-    },
     SearchRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
@@ -63,6 +54,33 @@ class _$AppRouter extends RootStackRouter {
       return CustomPage<dynamic>(
           routeData: routeData,
           child: const SettingsPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    AddRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const AddPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ProfileRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const ProfilePage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ContentRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const ContentPage(),
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
           opaque: true,
@@ -84,13 +102,15 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig('#redirect',
               path: '',
               parent: MainRoute.name,
-              redirectTo: 'placeholder',
+              redirectTo: 'search',
               fullMatch: true),
-          RouteConfig(MainScreenPlaceholderRoute.name,
-              path: 'placeholder', parent: MainRoute.name),
           RouteConfig(SearchRoute.name, path: 'search', parent: MainRoute.name),
           RouteConfig(SettingsRoute.name,
-              path: 'settings', parent: MainRoute.name)
+              path: 'settings', parent: MainRoute.name),
+          RouteConfig(AddRoute.name, path: 'add', parent: MainRoute.name),
+          RouteConfig(ProfileRoute.name,
+              path: 'profile', parent: MainRoute.name),
+          RouteConfig(ContentRoute.name, path: 'page', parent: MainRoute.name)
         ])
       ];
 }
@@ -147,15 +167,6 @@ class ResetPasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MainScreenPlaceholderPage]
-class MainScreenPlaceholderRoute extends PageRouteInfo<void> {
-  const MainScreenPlaceholderRoute()
-      : super(MainScreenPlaceholderRoute.name, path: 'placeholder');
-
-  static const String name = 'MainScreenPlaceholderRoute';
-}
-
-/// generated route for
 /// [SearchPage]
 class SearchRoute extends PageRouteInfo<void> {
   const SearchRoute() : super(SearchRoute.name, path: 'search');
@@ -169,4 +180,28 @@ class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute() : super(SettingsRoute.name, path: 'settings');
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [AddPage]
+class AddRoute extends PageRouteInfo<void> {
+  const AddRoute() : super(AddRoute.name, path: 'add');
+
+  static const String name = 'AddRoute';
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
+
+  static const String name = 'ProfileRoute';
+}
+
+/// generated route for
+/// [ContentPage]
+class ContentRoute extends PageRouteInfo<void> {
+  const ContentRoute() : super(ContentRoute.name, path: 'page');
+
+  static const String name = 'ContentRoute';
 }

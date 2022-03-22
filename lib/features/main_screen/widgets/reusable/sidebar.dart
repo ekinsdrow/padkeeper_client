@@ -112,7 +112,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
                   _SidebarItem(
                     tapCallback: () {
                       context.router.push(
-                        const MainScreenPlaceholderRoute(),
+                        const ProfileRoute(),
                       );
                     },
                     text: "Ivan Kolchev",
@@ -234,7 +234,7 @@ class _Pages extends StatelessWidget {
         _SidebarItem(
           tapCallback: () {
             context.router.push(
-              const MainScreenPlaceholderRoute(),
+              const AddRoute(),
             );
           },
           iconData: Icons.add,
@@ -253,7 +253,7 @@ class _Pages extends StatelessWidget {
               child: _SidebarItem(
                 tapCallback: () {
                   context.router.push(
-                    const MainScreenPlaceholderRoute(),
+                    const ContentRoute(),
                   );
                 },
                 isFull: isOpened,
