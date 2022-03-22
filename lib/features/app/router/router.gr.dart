@@ -40,6 +40,33 @@ class _$AppRouter extends RootStackRouter {
     ResetPasswordRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const ResetPasswordPage());
+    },
+    MainScreenPlaceholderRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const MainScreenPlaceholderPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    SearchRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const SearchPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    SettingsRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const SettingsPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 
@@ -53,7 +80,18 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig(ResetPasswordRoute.name,
               path: 'resetpassword', parent: AuthRouter.name)
         ]),
-        RouteConfig(MainRoute.name, path: '/main')
+        RouteConfig(MainRoute.name, path: '/main', children: [
+          RouteConfig('#redirect',
+              path: '',
+              parent: MainRoute.name,
+              redirectTo: 'placeholder',
+              fullMatch: true),
+          RouteConfig(MainScreenPlaceholderRoute.name,
+              path: 'placeholder', parent: MainRoute.name),
+          RouteConfig(SearchRoute.name, path: 'search', parent: MainRoute.name),
+          RouteConfig(SettingsRoute.name,
+              path: 'settings', parent: MainRoute.name)
+        ])
       ];
 }
 
@@ -77,7 +115,8 @@ class AuthRouter extends PageRouteInfo<void> {
 /// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
-  const MainRoute() : super(MainRoute.name, path: '/main');
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(MainRoute.name, path: '/main', initialChildren: children);
 
   static const String name = 'MainRoute';
 }
@@ -105,4 +144,29 @@ class ResetPasswordRoute extends PageRouteInfo<void> {
       : super(ResetPasswordRoute.name, path: 'resetpassword');
 
   static const String name = 'ResetPasswordRoute';
+}
+
+/// generated route for
+/// [MainScreenPlaceholderPage]
+class MainScreenPlaceholderRoute extends PageRouteInfo<void> {
+  const MainScreenPlaceholderRoute()
+      : super(MainScreenPlaceholderRoute.name, path: 'placeholder');
+
+  static const String name = 'MainScreenPlaceholderRoute';
+}
+
+/// generated route for
+/// [SearchPage]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute() : super(SearchRoute.name, path: 'search');
+
+  static const String name = 'SearchRoute';
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: 'settings');
+
+  static const String name = 'SettingsRoute';
 }
