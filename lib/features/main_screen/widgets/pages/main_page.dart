@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:padkeeper/common/assets/constants.dart';
 import 'package:padkeeper/features/main_screen/widgets/reusable/sidebar.dart';
@@ -20,9 +21,7 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 const Expanded(
-                  child: Center(
-                    child: Text('Content'),
-                  ),
+                  child: AutoRouter(),
                 ),
               ],
             ),

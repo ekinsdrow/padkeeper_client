@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:padkeeper/common/assets/constants.dart';
+import 'package:padkeeper/features/app/router/router.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({
@@ -108,6 +110,11 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _SidebarItem(
+                    tapCallback: () {
+                      context.router.push(
+                        const ProfileRoute(),
+                      );
+                    },
                     text: "Ivan Kolchev",
                     color: Theme.of(context).scaffoldBackgroundColor,
                     iconData: Icons.person,
@@ -225,6 +232,11 @@ class _Pages extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SidebarItem(
+          tapCallback: () {
+            context.router.push(
+              const AddRoute(),
+            );
+          },
           iconData: Icons.add,
           text: AppLocalizations.of(context)!.create_new,
           color: Theme.of(context).scaffoldBackgroundColor,
@@ -239,6 +251,11 @@ class _Pages extends StatelessWidget {
             itemBuilder: (context, index) => Container(
               alignment: Alignment.centerLeft,
               child: _SidebarItem(
+                tapCallback: () {
+                  context.router.push(
+                    const ContentRoute(),
+                  );
+                },
                 isFull: isOpened,
                 emoji: "🧐",
                 text: "Page",
@@ -271,6 +288,11 @@ class _Bottom extends StatelessWidget {
         _SidebarItem(
           iconData: Icons.search,
           isFull: isOpen,
+          tapCallback: () {
+            context.router.push(
+              const SearchRoute(),
+            );
+          },
           text: AppLocalizations.of(context)!.search,
           color: Theme.of(context).backgroundColor,
         ),
@@ -280,6 +302,11 @@ class _Bottom extends StatelessWidget {
         _SidebarItem(
           isFull: isOpen,
           iconData: Icons.settings,
+          tapCallback: () {
+            context.router.push(
+              const SettingsRoute(),
+            );
+          },
           text: AppLocalizations.of(context)!.settings,
           color: Theme.of(context).backgroundColor,
         ),
@@ -292,6 +319,7 @@ class _SidebarItem extends StatefulWidget {
   const _SidebarItem({
     required this.text,
     required this.color,
+    required this.tapCallback,
     this.iconData,
     this.emoji,
     this.isFull = false,
@@ -304,6 +332,8 @@ class _SidebarItem extends StatefulWidget {
   final Color color;
   final bool isFull;
 
+  final VoidCallback tapCallback;
+
   @override
   State<_SidebarItem> createState() => _SidebarItemState();
 }
@@ -313,77 +343,80 @@ class _SidebarItemState extends State<_SidebarItem> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) {
-        setState(() {
-          _isHover = true;
-        });
-      },
-      onExit: (event) {
-        setState(() {
-          _isHover = false;
-        });
-      },
-      child: LayoutBuilder(
-        builder: (context, constrains) {
-          return AnimatedContainer(
-            duration: Constants.aniamionDuration,
-            width: constrains.maxWidth,
-            height: 48,
-            decoration: BoxDecoration(
-              color: widget.color,
-              boxShadow: [
-                if (_isHover) Constants.shadow,
-              ],
-              borderRadius: BorderRadius.circular(24),
-              border: _isHover
-                  ? Border.all(
-                      color: Theme.of(context).primaryColor,
-                    )
-                  : null,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  width: 13,
-                ),
-                if (widget.iconData != null)
-                  Icon(
-                    widget.iconData,
-                    size: 24,
-                  )
-                else
-                  Center(
-                    child: Text(
-                      widget.emoji!,
-                      style: Theme.of(context).textTheme.headline2,
-                    ),
-                  ),
-                if (constrains.maxWidth > 247)
-                  Expanded(
-                    child: LayoutBuilder(
-                      builder: (context, c) {
-                        if (c.maxWidth >= constrains.maxWidth - 50) {
-                          return Row(
-                            children: [
-                              const SizedBox(
-                                width: Constants.mediumPadding,
-                              ),
-                              Text(
-                                widget.text,
-                              ),
-                            ],
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
-                  ),
-              ],
-            ),
-          );
+    return GestureDetector(
+      onTap: widget.tapCallback,
+      child: MouseRegion(
+        onEnter: (event) {
+          setState(() {
+            _isHover = true;
+          });
         },
+        onExit: (event) {
+          setState(() {
+            _isHover = false;
+          });
+        },
+        child: LayoutBuilder(
+          builder: (context, constrains) {
+            return AnimatedContainer(
+              duration: Constants.aniamionDuration,
+              width: constrains.maxWidth,
+              height: 48,
+              decoration: BoxDecoration(
+                color: widget.color,
+                boxShadow: [
+                  if (_isHover) Constants.shadow,
+                ],
+                borderRadius: BorderRadius.circular(24),
+                border: _isHover
+                    ? Border.all(
+                        color: Theme.of(context).primaryColor,
+                      )
+                    : null,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 13,
+                  ),
+                  if (widget.iconData != null)
+                    Icon(
+                      widget.iconData,
+                      size: 24,
+                    )
+                  else
+                    Center(
+                      child: Text(
+                        widget.emoji!,
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                    ),
+                  if (constrains.maxWidth > 247)
+                    Expanded(
+                      child: LayoutBuilder(
+                        builder: (context, c) {
+                          if (c.maxWidth >= constrains.maxWidth - 50) {
+                            return Row(
+                              children: [
+                                const SizedBox(
+                                  width: Constants.mediumPadding,
+                                ),
+                                Text(
+                                  widget.text,
+                                ),
+                              ],
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                    ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -40,6 +40,51 @@ class _$AppRouter extends RootStackRouter {
     ResetPasswordRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const ResetPasswordPage());
+    },
+    SearchRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const SearchPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    SettingsRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const SettingsPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    AddRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const AddPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ProfileRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const ProfilePage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ContentRoute.name: (routeData) {
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: const ContentPage(),
+          fullscreenDialog: true,
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 
@@ -53,7 +98,20 @@ class _$AppRouter extends RootStackRouter {
           RouteConfig(ResetPasswordRoute.name,
               path: 'resetpassword', parent: AuthRouter.name)
         ]),
-        RouteConfig(MainRoute.name, path: '/main')
+        RouteConfig(MainRoute.name, path: '/main', children: [
+          RouteConfig('#redirect',
+              path: '',
+              parent: MainRoute.name,
+              redirectTo: 'search',
+              fullMatch: true),
+          RouteConfig(SearchRoute.name, path: 'search', parent: MainRoute.name),
+          RouteConfig(SettingsRoute.name,
+              path: 'settings', parent: MainRoute.name),
+          RouteConfig(AddRoute.name, path: 'add', parent: MainRoute.name),
+          RouteConfig(ProfileRoute.name,
+              path: 'profile', parent: MainRoute.name),
+          RouteConfig(ContentRoute.name, path: 'page', parent: MainRoute.name)
+        ])
       ];
 }
 
@@ -77,7 +135,8 @@ class AuthRouter extends PageRouteInfo<void> {
 /// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
-  const MainRoute() : super(MainRoute.name, path: '/main');
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(MainRoute.name, path: '/main', initialChildren: children);
 
   static const String name = 'MainRoute';
 }
@@ -105,4 +164,44 @@ class ResetPasswordRoute extends PageRouteInfo<void> {
       : super(ResetPasswordRoute.name, path: 'resetpassword');
 
   static const String name = 'ResetPasswordRoute';
+}
+
+/// generated route for
+/// [SearchPage]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute() : super(SearchRoute.name, path: 'search');
+
+  static const String name = 'SearchRoute';
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute() : super(SettingsRoute.name, path: 'settings');
+
+  static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [AddPage]
+class AddRoute extends PageRouteInfo<void> {
+  const AddRoute() : super(AddRoute.name, path: 'add');
+
+  static const String name = 'AddRoute';
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
+
+  static const String name = 'ProfileRoute';
+}
+
+/// generated route for
+/// [ContentPage]
+class ContentRoute extends PageRouteInfo<void> {
+  const ContentRoute() : super(ContentRoute.name, path: 'page');
+
+  static const String name = 'ContentRoute';
 }
