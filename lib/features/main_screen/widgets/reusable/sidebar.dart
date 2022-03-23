@@ -364,21 +364,23 @@ class _SidebarItemState extends State<_SidebarItem> {
               height: 48,
               decoration: BoxDecoration(
                 color: widget.color,
-                boxShadow: [
-                  if (_isHover) Constants.shadow,
-                ],
-                borderRadius: BorderRadius.circular(24),
                 border: _isHover
                     ? Border.all(
                         color: Theme.of(context).primaryColor,
                       )
-                    : null,
+                    : Border.all(
+                        color: Colors.transparent,
+                      ),
+                boxShadow: [
+                  if (_isHover) Constants.shadow,
+                ],
+                borderRadius: BorderRadius.circular(24),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    width: 13,
+                    width: 11,
                   ),
                   if (widget.iconData != null)
                     Icon(
