@@ -5,8 +5,18 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Search"),
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              enabledBorder:
+                  Theme.of(context).inputDecorationTheme.focusedBorder,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

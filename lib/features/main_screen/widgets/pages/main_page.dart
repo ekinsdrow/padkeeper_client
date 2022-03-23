@@ -20,8 +20,17 @@ class MainPage extends StatelessWidget {
                     constraints: constrains,
                   ),
                 ),
-                const Expanded(
-                  child: AutoRouter(),
+                Expanded(
+                  child: AutoRouter(
+                    builder: (context, content) {
+                      return Container(
+                        padding: const EdgeInsets.all(
+                          Constants.mediumPadding,
+                        ),
+                        child: content,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
