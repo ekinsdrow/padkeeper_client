@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:padkeeper/features/add_page/widgets/pages/add_page.dart';
+import 'package:padkeeper/features/app/router/guards/main_router_guard.dart';
 import 'package:padkeeper/features/app/widgets/pages/initial_page.dart';
 import 'package:padkeeper/features/auth/login/widgets/login_page.dart';
 import 'package:padkeeper/features/auth/register/widgets/register_page.dart';
@@ -50,34 +51,54 @@ part 'router.gr.dart';
           initial: true,
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+          guards: [
+            MainRouterGuard,
+          ],
         ),
         CustomRoute(
           path: 'settings',
           page: SettingsPage,
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+          guards: [
+            MainRouterGuard,
+          ],
         ),
         CustomRoute(
           path: 'add',
           page: AddPage,
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+          guards: [
+            MainRouterGuard,
+          ],
         ),
         CustomRoute(
           path: 'profile',
           page: ProfilePage,
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+          guards: [
+            MainRouterGuard,
+          ],
         ),
         CustomRoute(
           path: 'page',
           page: ContentPage,
           fullscreenDialog: true,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+          guards: [
+            MainRouterGuard,
+          ],
         ),
       ],
     ),
   ],
 )
-
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  AppRouter({
+    required MainRouterGuard mainRouterGuard,
+  }) : super(
+          mainRouterGuard: mainRouterGuard,
+        );
+}

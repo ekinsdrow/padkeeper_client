@@ -13,7 +13,11 @@
 part of 'router.dart';
 
 class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+  _$AppRouter(
+      {GlobalKey<NavigatorState>? navigatorKey, required this.mainRouterGuard})
+      : super(navigatorKey);
+
+  final MainRouterGuard mainRouterGuard;
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -104,13 +108,22 @@ class _$AppRouter extends RootStackRouter {
               parent: MainRoute.name,
               redirectTo: 'search',
               fullMatch: true),
-          RouteConfig(SearchRoute.name, path: 'search', parent: MainRoute.name),
+          RouteConfig(SearchRoute.name,
+              path: 'search',
+              parent: MainRoute.name,
+              guards: [mainRouterGuard]),
           RouteConfig(SettingsRoute.name,
-              path: 'settings', parent: MainRoute.name),
-          RouteConfig(AddRoute.name, path: 'add', parent: MainRoute.name),
+              path: 'settings',
+              parent: MainRoute.name,
+              guards: [mainRouterGuard]),
+          RouteConfig(AddRoute.name,
+              path: 'add', parent: MainRoute.name, guards: [mainRouterGuard]),
           RouteConfig(ProfileRoute.name,
-              path: 'profile', parent: MainRoute.name),
-          RouteConfig(ContentRoute.name, path: 'page', parent: MainRoute.name)
+              path: 'profile',
+              parent: MainRoute.name,
+              guards: [mainRouterGuard]),
+          RouteConfig(ContentRoute.name,
+              path: 'page', parent: MainRoute.name, guards: [mainRouterGuard])
         ])
       ];
 }
